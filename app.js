@@ -6,8 +6,10 @@ function getApi(){
     fetch("http://hasanadiguzel.com.tr/api/sondepremler")
     .then(response => response.json())
     .then(data => {
+        let i = 0
         Array.from(data.data).forEach(quake=>{
-            createUI(quake.tarih, quake.saat, quake.derinlik_km, quake.yer)
+            i++
+            createUI(i,quake.tarih, quake.saat, quake.derinlik_km, quake.yer)
         })
     })
 }
@@ -17,9 +19,13 @@ function getApi(){
                 <p class="depth">Depth: <span id="depth">2.6</span></p>
                 <p class="place">Place: <span id="place">DERE-(KARAMAN)</span></p>
             </div>    */
-function createUI(date,hour,depth,place){
+function createUI(number,date,hour,depth,place){
   const div = document.createElement("div")
   div.classList = "col-9 col-md-5 m-2 p-2 bg-dark text-white rounded-4"
+
+  const pNumber = document.createElement("p") 
+  pNumber.textContent = number 
+  pNumber.classList = "text-center text-danger"
 
   const pDate = document.createElement("p")
   pDate.className = "date"
@@ -52,9 +58,10 @@ function createUI(date,hour,depth,place){
   sPlace.textContent = place
     pPlace.appendChild(sPlace)
     
-    div.appendChild(pDate)
-        div.appendChild(pHour)
-            div.appendChild(pDepth)
-                div.appendChild(pPlace)
-                    list.appendChild(div)
+    div.appendChild(pNumber)
+        div.appendChild(pDate)
+            div.appendChild(pHour)
+                div.appendChild(pDepth)
+                    div.appendChild(pPlace)
+                        list.appendChild(div)
 }
