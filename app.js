@@ -3,7 +3,7 @@ const list = document.querySelector(".row")
 document.addEventListener("DOMContentLoaded", getApi)
 
 function getApi(){
-    fetch("http://hasanadiguzel.com.tr/api/sondepremler")
+    fetch("https://hasanadiguzel.com.tr/api/sondepremler")
     .then(response => response.json())
     .then(data => {
         let i = 0
