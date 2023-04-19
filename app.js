@@ -9,7 +9,7 @@ function getApi(){
         let i = 0
         Array.from(data.data).forEach(quake=>{
             i++
-            createUI(i,quake.tarih, quake.saat, quake.derinlik_km, quake.yer)
+            createUI(i,quake.tarih, quake.saat, quake.derinlik_km, quake.ml, quake.yer)
         })
     })
 }
@@ -19,7 +19,7 @@ function getApi(){
                 <p class="depth">Depth: <span id="depth">2.6</span></p>
                 <p class="place">Place: <span id="place">DERE-(KARAMAN)</span></p>
             </div>    */
-function createUI(number,date,hour,depth,place){
+function createUI(number,date,hour,depth,magnitude,place){
   const div = document.createElement("div")
   div.classList = "col-9 col-md-5 m-2 p-2 bg-dark text-white rounded-4"
 
@@ -29,7 +29,7 @@ function createUI(number,date,hour,depth,place){
 
   const pDate = document.createElement("p")
   pDate.className = "date"
-  pDate.textContent = "Date:"
+  pDate.textContent = "Date: "
   const sDate = document.createElement("span")
   sDate.id = "date"
   sDate.textContent = date
@@ -37,7 +37,7 @@ function createUI(number,date,hour,depth,place){
 
   const pHour = document.createElement("p")
   pHour.className = "Hour"
-  pHour.textContent = "Hour:"
+  pHour.textContent = "Hour: "
   const sHour = document.createElement("span")
   sHour.id = "hour"
   sHour.textContent = hour
@@ -45,23 +45,33 @@ function createUI(number,date,hour,depth,place){
 
   const pDepth = document.createElement("p")
   pDepth.className = "Depth"
-  pDepth.textContent = "Depth:"
+  pDepth.textContent = "Depth: "
   const sDepth = document.createElement("span")
   sDepth.id = "depth"
-  sDepth.textContent = depth
+  sDepth.textContent = depth + " km"
     pDepth.appendChild(sDepth)
+
+  const pMagnitude = document.createElement("p")
+  pMagnitude.className = "Magnitude"
+  pMagnitude.textContent = "Magnitude: "
+  const sMagnitude = document.createElement("span")
+  sMagnitude.id = "magnitude"
+  sMagnitude.textContent = magnitude
+    pMagnitude.appendChild(sMagnitude)
+
   const pPlace = document.createElement("p")
   pPlace.className = "Place"
-  pPlace.textContent = "Place:"
+  pPlace.textContent = "Place: "
   const sPlace = document.createElement("span")
   sPlace.id = "place"
-  sPlace.textContent = place
+  sPlace.textContent = place 
     pPlace.appendChild(sPlace)
     
     div.appendChild(pNumber)
         div.appendChild(pDate)
             div.appendChild(pHour)
                 div.appendChild(pDepth)
-                    div.appendChild(pPlace)
-                        list.appendChild(div)
+                    div.appendChild(pMagnitude)
+                        div.appendChild(pPlace)
+                            list.appendChild(div)
 }
